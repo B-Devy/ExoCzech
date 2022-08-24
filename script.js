@@ -1,4 +1,3 @@
-
 const liste = [
     {mot: "les", definition: "forêt", genre: "N", categorie:"nom", bool: true},
     {mot: "zahrada", definition: "jardin", genre: "F", categorie:"nom", bool: true},
@@ -16,9 +15,12 @@ const liste = [
     {mot: "deliat", definition: "faire", genre: "X", categorie:"verbe", bool: true},
 ]
 
+//import {liste} from './liste.js'
+
 var prob = document.getElementById('prob');
 var champ = document.getElementById('champ');
 var insert = document.getElementById('insert');
+var sign = document.getElementById('sign');
 //---------------BOUTONS
 var start = document.getElementById('bouton');
 var nom = document.getElementById('nom');
@@ -33,7 +35,7 @@ var liste2;
 function question() {
     num = Math.floor(Math.random() * liste2.length);
     prob.innerText = liste2[num].definition;
-    document.body.style.backgroundColor = "white";
+    sign.style.backgroundImage = "none";
     champ.value = "";
 }
 
@@ -54,20 +56,19 @@ insert.addEventListener('click', function(e) {
         e.preventDefault();
         voca = champ.value;
         if (voca === liste2[num].mot) {
-            document.body.style.backgroundColor = "green";
+            //document.body.style.backgroundColor = "green";
+            sign.style.backgroundImage = "url(./images/green.png)";
             liste2.splice(num, 1);
             console.log(liste2);
             if  (liste2.length == 0){
-                    
                     prob.innerText = "Bravo !";
-                
                 } else {
                     setTimeout(question, 1000);
                 }
         } else {
-            document.body.style.backgroundColor = "red";
+            //document.body.style.backgroundColor = "red";
+            sign.style.backgroundImage = "url(./images/red.png)";
         }
-        
     }
 )
 
@@ -88,18 +89,18 @@ nom.addEventListener('click', function() {
 adj.addEventListener('click', function() {
     question2("adjectif");
     //console.log(liste2);
-}
+    }
 )
 
 mdg.addEventListener('click', function() {
     question2("mot de grammaire");
     //console.log(liste2);
-}
+    }   
 )
 
 verbe.addEventListener('click', function() {
     question2("verbe");
     //console.log(liste2);
-}
+    }
 )
 
